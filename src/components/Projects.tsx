@@ -193,7 +193,9 @@ function ProjectCard({
 
         <div className="flex flex-wrap items-center gap-6 pt-4">
           <a
-            href={project.links.live === "Live" ? "#" : project.links.live}
+            href={project.links.live}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group relative px-8 py-4 rounded-3xl bg-slate-900 dark:bg-white text-white dark:text-black font-black text-xs tracking-wider uppercase overflow-hidden transition-all hover:scale-105 active:scale-95 flex items-center gap-2 shadow-xl"
           >
             <div className="absolute inset-0 bg-blue-500 opacity-0 group-hover:opacity-10 transition-opacity" />
@@ -202,7 +204,9 @@ function ProjectCard({
           </a>
           
           <a
-            href={project.links.github === "GitHub" ? "#" : project.links.github}
+            href={project.links.github}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-2 text-sm font-black text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors uppercase tracking-wider"
           >
             <Github className="w-5 h-5" />

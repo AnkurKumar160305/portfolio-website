@@ -46,7 +46,7 @@ export function Footer() {
             <h3 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">Contact</h3>
             <ul className="space-y-4">
               <li>
-                <a href={`mailto:${basics.email}`} className="group flex items-center gap-3 text-slate-600 dark:text-slate-300 hover:text-blue-500 transition-colors">
+                <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${basics.email}`} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 text-slate-600 dark:text-slate-300 hover:text-blue-500 transition-colors">
                   <div className="p-2 rounded-lg bg-slate-900/5 dark:bg-white/5 group-hover:bg-blue-500/10 transition-colors">
                     <Mail className="w-4 h-4" />
                   </div>

@@ -26,12 +26,12 @@ export function Hero() {
           className="relative mx-auto w-32 h-32 sm:w-40 sm:h-40 mb-8"
         >
           <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-500 to-emerald-500 animate-spin-slow opacity-20 blur-xl" />
-          <div className="relative w-full h-full rounded-full border-2 border-white/20 dark:border-white/10 p-1 backdrop-blur-sm bg-white/5 dark:bg-white/5 overflow-hidden group shadow-2xl">
+          <div className="relative w-full h-full rounded-full border-2 border-white/20 dark:border-white/10 p-1 backdrop-blur-sm bg-white/5 dark:bg-white/5 overflow-hidden group shadow-2xl flex items-center justify-center">
             <Image
               src="/images/ankur1.png"
               alt="Ankur"
-              width={160}
-              height={160}
+              width={260}
+              height={260}
               className="rounded-full object-cover transition-transform duration-700 group-hover:scale-110"
               priority
             />
@@ -106,7 +106,9 @@ export function Hero() {
           </button>
 
           <a
-            href="#footer"
+            href="https://drive.google.com/uc?export=download&id=1tnq84zKuiX6Beu4dZNumHRZXDGZmR7za"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group px-8 py-3.5 rounded-2xl font-black text-xs tracking-wider uppercase text-slate-900 dark:text-slate-100 border border-slate-900/10 dark:border-white/10 bg-white dark:bg-white/5 backdrop-blur-sm hover:bg-slate-50 dark:hover:bg-white/10 hover:shadow-xl transition-all duration-500 hover:scale-105 active:scale-95 flex items-center gap-2"
           >
             <FileDown className="w-4 h-4" />

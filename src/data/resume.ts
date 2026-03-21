@@ -8,7 +8,7 @@ export const resumeData = {
     links: {
       linkedin: "https://www.linkedin.com/in/ankur-kumar-833026284/",
       github: "https://github.com/AnkurKumar160305",
-      leetcode: "https://leetcode.com/u/qDCkfvJavE/",
+      leetcode: "https://leetcode.com/u/Ankur160305/",
     },
     summary:
       "Full-stack developer specializing in AI-driven platforms and ML-powered recommendation systems with a strong foundation in Data Structures and Algorithms.",
@@ -42,7 +42,7 @@ export const resumeData = {
     {
       title: "Arovia Healthcare, Anytime, Anywhere",
       date: "Nov' 25",
-      links: { live: "Live", github: "GitHub" },
+      links: { live: "https://arovia.vercel.app/", github: "https://github.com/AnkurKumar160305/Arovia-CU" },
       techStack: [
         "React.js",
         "Node.js",
@@ -61,7 +61,7 @@ export const resumeData = {
     {
       title: "Agentic Bug Hunter - AI Bug Detection System",
       date: "Aug' 25",
-      links: { live: "Live", github: "GitHub" },
+      links: { live: "https://infenion.vercel.app/", github: "https://github.com/AnkurKumar160305/Infenion" },
       techStack: [
         "Python",
         "LLM APIs",
@@ -79,7 +79,7 @@ export const resumeData = {
     {
       title: "SkillIndia - AI Job & Course Recommendation System",
       date: "Jul' 25",
-      links: { live: "Live", github: "GitHub" },
+      links: { live: "https://skill-india-app-v3.vercel.app/", github: "https://github.com/AnkurKumar160305/SkillApp" },
       techStack: [
         "Python",
         "Scikit-learn",
@@ -103,17 +103,17 @@ export const resumeData = {
   certificates: [
     {
       name: "Gen Z Innovations Hackathon - Zinnovatio 3.0",
-      link: "Certificate",
+      link: "https://drive.google.com/file/d/1gu0_-ryZ9T0ODwElAxJVGGKvoeuPtpbA/view",
       date: "Oct' 25",
     },
     {
       name: "Data Structures and Algorithm - IamneoPlatform",
-      link: "Certificate",
+      link: "https://drive.google.com/file/d/1pRpmk5eO0A6iOmgO0GYtvORh7KGa-BYk/view",
       date: "Aug' 25",
     },
     {
       name: "MERN Stack with GenAI - W3Grads",
-      link: "Certificate",
+      link: "https://drive.google.com/file/d/1q6pgWmoiHlN8ECW1Fdvpgjdaep81I8iL/view",
       date: "Jul' 25",
     },
   ],

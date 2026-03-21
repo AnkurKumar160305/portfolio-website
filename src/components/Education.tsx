@@ -79,8 +79,12 @@ export function Education() {
                       </h4>
                       <p className="text-blue-600 dark:text-blue-400 font-bold mt-1 flex items-center gap-1.5 text-sm uppercase tracking-wider">
                         {edu.degree}
-                        <span className="w-1 h-1 rounded-full bg-slate-200 dark:bg-slate-700" />
-                        <span className="text-slate-600 dark:text-slate-300 font-bold">{edu.major}</span>
+                        {"major" in edu && (
+                          <>
+                            <span className="w-1 h-1 rounded-full bg-slate-200 dark:bg-slate-700" />
+                            <span className="text-slate-600 dark:text-slate-300 font-bold">{edu.major}</span>
+                          </>
+                        )}
                       </p>
                     </div>
                     <div className="flex flex-col items-start sm:items-end gap-1.5 flex-shrink-0">
@@ -138,7 +142,9 @@ export function Education() {
                       {cert.name}
                     </h4>
                     <a
-                      href="#"
+                      href={cert.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-widest text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all group-hover:translate-x-1"
                     >
                       Verify
