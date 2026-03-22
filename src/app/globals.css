@@ -46,12 +46,12 @@ html {
 }
 
 .dark {
-  --background: #05050f;
-  --foreground: #f4f6ff;
-  --primary: #3b82f6;
-  --border: rgba(255, 255, 255, 0.07);
-  --card-bg: rgba(255, 255, 255, 0.02);
-  --nav-bg: rgba(5, 5, 15, 0.6);
+  --background: #0f0a1a;
+  --foreground: #f3e8ff;
+  --primary: #a855f7;
+  --border: rgba(168, 85, 247, 0.15);
+  --card-bg: rgba(168, 85, 247, 0.04);
+  --nav-bg: rgba(15, 10, 26, 0.7);
 }
 
 /* Base style overrides */

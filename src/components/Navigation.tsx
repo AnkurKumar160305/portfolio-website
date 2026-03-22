@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Home, Briefcase, Trophy, Code2, GraduationCap, Wrench, Sun, Moon } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import { MagneticWrapper } from "./MagneticWrapper";
 
 const navItems = [
   { id: "hero", label: "Home", icon: Home },
@@ -70,24 +71,25 @@ export function Navigation() {
 
           <div className="flex items-center gap-1 bg-white/10 dark:bg-white/5 backdrop-blur-md rounded-2xl p-1 border border-slate-900/5 dark:border-white/10 shadow-sm">
             {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollTo(item.id)}
-                className={`relative px-4 py-2 text-xs font-black uppercase tracking-widest transition-all duration-300 rounded-xl ${
-                  activeSection === item.id
-                    ? "text-slate-900 dark:text-white"
-                    : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
-                }`}
-              >
-                {activeSection === item.id && (
-                  <motion.div
-                    layoutId="nav-active"
-                    className="absolute inset-0 bg-slate-900/5 dark:bg-white/10 rounded-xl shadow-inner"
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
-                )}
-                <span className="relative z-10">{item.label}</span>
-              </button>
+              <MagneticWrapper key={item.id} intensity={0.3}>
+                <button
+                  onClick={() => scrollTo(item.id)}
+                  className={`relative px-4 py-2 text-xs font-black uppercase tracking-widest transition-all duration-300 rounded-xl ${
+                    activeSection === item.id
+                      ? "text-slate-900 dark:text-white"
+                      : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                  }`}
+                >
+                  {activeSection === item.id && (
+                    <motion.div
+                      layoutId="nav-active"
+                      className="absolute inset-0 bg-slate-900/5 dark:bg-white/10 rounded-xl shadow-inner"
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{item.label}</span>
+                </button>
+              </MagneticWrapper>
             ))}
             <div className="w-px h-6 bg-slate-900/10 dark:bg-white/10 mx-1" />
             <ThemeToggle />

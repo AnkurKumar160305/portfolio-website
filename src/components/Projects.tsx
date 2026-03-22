@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import { resumeData } from "@/data/resume";
 import { ExternalLink, Github, ChevronDown, Rocket, Code, Sparkles, MoveRight } from "lucide-react";
 import Image from "next/image";
+import { MagneticWrapper } from "./MagneticWrapper";
 
 const projectImages = [
   "/images/project-arovia-hd.png",
@@ -192,26 +193,30 @@ function ProjectCard({
         </ul>
 
         <div className="flex flex-wrap items-center gap-6 pt-4">
-          <a
-            href={project.links.live}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative px-8 py-4 rounded-3xl bg-slate-900 dark:bg-white text-white dark:text-black font-black text-xs tracking-wider uppercase overflow-hidden transition-all hover:scale-105 active:scale-95 flex items-center gap-2 shadow-xl"
-          >
-            <div className="absolute inset-0 bg-blue-500 opacity-0 group-hover:opacity-10 transition-opacity" />
-            View Live
-            <MoveRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </a>
+          <MagneticWrapper>
+            <a
+              href={project.links.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative px-8 py-4 rounded-3xl bg-slate-900 dark:bg-white text-white dark:text-black font-black text-xs tracking-wider uppercase overflow-hidden transition-all hover:scale-105 active:scale-95 flex items-center gap-2 shadow-xl"
+            >
+              <div className="absolute inset-0 bg-blue-500 opacity-0 group-hover:opacity-10 transition-opacity" />
+              View Live
+              <MoveRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </MagneticWrapper>
           
-          <a
-            href={project.links.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-sm font-black text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors uppercase tracking-wider"
-          >
-            <Github className="w-5 h-5" />
-            Repository
-          </a>
+          <MagneticWrapper intensity={0.5}>
+            <a
+              href={project.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm font-black text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors uppercase tracking-wider relative p-2"
+            >
+              <Github className="w-5 h-5" />
+              Repository
+            </a>
+          </MagneticWrapper>
         </div>
       </motion.div>
     </div>

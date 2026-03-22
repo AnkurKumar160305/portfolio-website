@@ -61,7 +61,9 @@ export function Education() {
                 initial={{ opacity: 0, x: -30 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.2 + i * 0.15 }}
+                whileHover={{ scale: 1.03, y: -10, x: 10, rotateX: 2 }}
                 className="relative pl-16 md:pl-24 group"
+                style={{ perspective: 1000 }}
               >
                 <div
                   className={`absolute left-[1.25rem] md:left-[1.75rem] top-6 w-4 h-4 rounded-full bg-white dark:bg-slate-900 border-2 border-slate-900/10 dark:border-white/20 z-10 transition-all duration-500 group-hover:scale-125 group-hover:border-blue-500 dark:group-hover:border-blue-400`}
@@ -125,8 +127,9 @@ export function Education() {
                 initial={{ opacity: 0, x: 30 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
-                whileHover={{ x: 10, scale: 1.02 }}
-                className="group relative p-6 rounded-3xl bg-white dark:bg-slate-900/40 border border-slate-900/5 dark:border-white/5 backdrop-blur-xl hover:bg-slate-50 dark:hover:bg-slate-900/60 hover:border-amber-500/20 dark:hover:border-amber-500/30 transition-all duration-500 shadow-xl dark:shadow-none overflow-hidden"
+                whileHover={{ x: 10, y: -10, scale: 1.05, rotateY: -5 }}
+                className="group relative p-6 rounded-3xl bg-white dark:bg-slate-900/40 border border-slate-900/5 dark:border-white/5 backdrop-blur-xl hover:bg-slate-50 dark:hover:bg-slate-900/60 hover:border-amber-500/20 dark:hover:border-amber-500/30 transition-all duration-500 shadow-xl dark:shadow-none hover:shadow-[0_20px_40px_-15px_rgba(245,158,11,0.2)] overflow-hidden"
+                style={{ perspective: 1000 }}
               >
                 <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.02] bg-[radial-gradient(#000_1px,transparent_1px)] dark:bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]" />
                 

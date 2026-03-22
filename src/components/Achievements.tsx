@@ -135,8 +135,8 @@ export function Achievements() {
               initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-              whileHover={{ scale: 1.02, rotateY: i % 2 === 0 ? 5 : -5 }}
-              className={`group relative p-8 rounded-3xl bg-white dark:bg-slate-900/40 border border-slate-900/5 dark:border-white/5 backdrop-blur-sm overflow-hidden transition-all duration-500 shadow-xl dark:shadow-none hover:shadow-2xl ${shadowMap[i % shadowMap.length]} hover:border-slate-900/10 dark:hover:border-white/20`}
+              whileHover={{ scale: 1.05, y: -10, rotateX: 5, rotateY: i % 2 === 0 ? 5 : -5 }}
+              className={`group relative p-8 rounded-3xl bg-white dark:bg-slate-900/40 border border-slate-900/5 dark:border-white/5 backdrop-blur-sm overflow-hidden transition-all duration-500 shadow-xl dark:shadow-none hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_20px_40px_-15px_rgba(255,255,255,0.1)] ${shadowMap[i % shadowMap.length]} hover:border-slate-900/10 dark:hover:border-white/20`}
               style={{ perspective: "1000px" }}
             >
               <DecorIcon className="absolute -right-8 -bottom-8 w-32 h-32 text-slate-900/[0.03] dark:text-white/[0.03] rotate-12 group-hover:rotate-0 transition-transform duration-700" />

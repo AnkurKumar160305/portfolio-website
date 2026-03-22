@@ -1,121 +1,115 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { motion, useSpring, useMotionValue, useTransform, useMotionTemplate } from "framer-motion";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 export function AnimatedBackground() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Smooth mouse movement for parallax depth 
+  const smoothX = useSpring(mouseX, { damping: 50, stiffness: 100 });
+  const smoothY = useSpring(mouseY, { damping: 50, stiffness: 100 });
+
+  // ALL HOOKS MUST BE BEFORE EARLY RETURNS
+  const rotateX = useTransform(smoothY, [0, typeof window !== "undefined" ? window.innerHeight : 1000], [8, -8]);
+  const rotateY = useTransform(smoothX, [0, typeof window !== "undefined" ? window.innerWidth : 1000], [-8, 8]);
+
+  const spotlightX = useTransform(smoothX, (val) => `${val}px`);
+  const spotlightY = useTransform(smoothY, (val) => `${val}px`);
+  
+  const isDark = theme === "dark" || (!theme && typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  const spotlightColor = isDark ? 'rgba(168,85,247,0.15)' : 'rgba(59,130,246,0.08)';
+  const spotlightBackground = useMotionTemplate`radial-gradient(800px circle at ${spotlightX} ${spotlightY}, ${spotlightColor}, transparent 60%)`;
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let animationFrameId: number;
-    let particles: Particle[] = [];
-    const particleCount = 40;
+    setMounted(true);
     
-    // Theme-specific colors
-    const isDark = theme === "dark";
-    const particleColor = isDark ? "rgba(59, 130, 246, 0.3)" : "rgba(59, 130, 246, 0.15)";
-    const lineColor = isDark ? "rgba(59, 130, 246, 0.05)" : "rgba(59, 130, 246, 0.03)";
-
-    class Particle {
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      size: number;
-
-      constructor() {
-        this.x = Math.random() * canvas!.width;
-        this.y = Math.random() * canvas!.height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.size = Math.random() * 2 + 1;
-      }
-
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-
-        if (this.x < 0 || this.x > canvas!.width) this.vx *= -1;
-        if (this.y < 0 || this.y > canvas!.height) this.vy *= -1;
-      }
-
-      draw() {
-        if (!ctx) return;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = particleColor;
-        ctx.fill();
-      }
+    if (typeof window !== "undefined") {
+      mouseX.set(window.innerWidth / 2);
+      mouseY.set(window.innerHeight / 2);
     }
-
-    const init = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      particles = [];
-      for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
-      }
+    
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
     };
 
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      particles.forEach((p, i) => {
-        p.update();
-        p.draw();
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseX, mouseY]);
 
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = p.x - particles[j].x;
-          const dy = p.y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+  if (!mounted) return null;
 
-          if (dist < 150) {
-            ctx.beginPath();
-            ctx.strokeStyle = lineColor;
-            ctx.lineWidth = 1;
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-      });
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    init();
-    animate();
-
-    const handleResize = () => {
-      init();
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [theme]);
-
-  // Reduced motion support
   if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    return (
-      <div className="fixed inset-0 -z-10 bg-slate-50 dark:bg-[#030712] transition-colors duration-500" />
-    );
+    return <div className="fixed inset-0 -z-10 transition-colors duration-500" style={{ backgroundColor: 'var(--background)' }} />;
   }
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 -z-10 pointer-events-none transition-colors duration-500"
-      style={{ backgroundColor: 'var(--background)' }}
-    />
+    <div className="fixed inset-0 -z-10 overflow-hidden transition-colors duration-500" style={{ backgroundColor: 'var(--background)' }}>
+      
+      {/* Dynamic 3D Perspective Container */}
+      <motion.div 
+        className="absolute inset-[-50%] w-[200%] h-[200%]"
+        style={{
+          rotateX,
+          rotateY,
+          perspective: 1200,
+          transformStyle: "preserve-3d"
+        }}
+      >
+        {/* Animated Infinite Vaporwave/Modern Grid */}
+        <motion.div
+          animate={{
+            backgroundPosition: ["0px 0px", "0px 100px"],
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 4,
+            ease: "linear",
+          }}
+          className="absolute inset-0 opacity-[0.25] dark:opacity-[0.1]"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, ${isDark ? '#a855f7' : '#3b82f6'} 1px, transparent 1px),
+              linear-gradient(to bottom, ${isDark ? '#a855f7' : '#3b82f6'} 1px, transparent 1px)
+            `,
+            backgroundSize: "100px 100px",
+          }}
+        />
+
+        {/* 3D Floating Geometry Elements for depth */}
+        {isDark && (
+          <>
+            <motion.div
+              animate={{ rotateX: [0, 360], rotateY: [0, 360] }}
+              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+              className="absolute top-[25%] left-[25%] w-40 h-40 border-2 border-purple-500/20 rounded-xl shadow-[0_0_30px_rgba(168,85,247,0.15)]"
+              style={{ transformStyle: "preserve-3d", translateZ: 300 }}
+            />
+            <motion.div
+              animate={{ rotateX: [360, 0], rotateZ: [0, 360] }}
+              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+              className="absolute bottom-[25%] right-[25%] w-64 h-64 border border-blue-500/10 rounded-full shadow-[0_0_40px_rgba(59,130,246,0.1)]"
+              style={{ transformStyle: "preserve-3d", translateZ: -200 }}
+            />
+          </>
+        )}
+      </motion.div>
+
+      {/* Interactive Mouse Spotlight */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: spotlightBackground }}
+      />
+      
+      {/* Edges fade to hide Grid repetition boundaries */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)] via-transparent to-[var(--background)] pointer-events-none opacity-90" />
+      <div className="absolute inset-0 bg-gradient-to-l from-[var(--background)] via-transparent to-[var(--background)] pointer-events-none opacity-90" />
+    </div>
   );
 }

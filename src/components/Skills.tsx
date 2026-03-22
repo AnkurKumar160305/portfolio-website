@@ -107,13 +107,14 @@ export function Skills() {
           const skills = resumeData.skills[group.key];
 
           return (
-            <motion.div
+              <motion.div
               key={group.key}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
-              whileHover={{ y: -5 }}
-              className={`group relative p-8 rounded-[2rem] bg-white dark:bg-slate-900/40 border border-slate-900/5 dark:border-white/5 backdrop-blur-xl transition-all duration-500 shadow-xl dark:shadow-none ${group.shadow} hover:border-slate-900/10 dark:hover:border-white/10`}
+              whileHover={{ y: -10, scale: 1.05, rotateX: 5, rotateY: i % 2 === 0 ? 5 : -5 }}
+              className={`group relative p-8 rounded-[2rem] bg-white dark:bg-slate-900/40 border border-slate-900/5 dark:border-white/5 backdrop-blur-xl transition-all duration-500 shadow-xl dark:shadow-none hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_20px_40px_-15px_rgba(255,255,255,0.1)] ${group.shadow} hover:border-slate-900/10 dark:hover:border-white/20`}
+              style={{ perspective: 1000 }}
             >
               <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${group.color} opacity-0 group-hover:opacity-5 blur-2xl transition-opacity duration-500`} />
 

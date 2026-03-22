@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { resumeData } from "@/data/resume";
 import { Mail, Phone, MapPin, Github, Linkedin, ExternalLink, Heart } from "lucide-react";
+import { MagneticWrapper } from "./MagneticWrapper";
 
 export function Footer() {
   const { basics } = resumeData;
@@ -28,15 +29,16 @@ export function Footer() {
                 { href: basics.links.linkedin, icon: Linkedin, label: "LinkedIn" },
                 { href: basics.links.leetcode, icon: ExternalLink, label: "LeetCode" },
               ].map(({ href, icon: Icon, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl border border-slate-900/5 dark:border-white/5 bg-slate-900/5 dark:bg-white/5 text-slate-500 dark:text-slate-400 flex items-center justify-center transition-all hover:scale-110 active:scale-95 hover:text-blue-500 hover:border-blue-500/30"
-                >
-                  <Icon className="w-5 h-5" />
-                </a>
+                <MagneticWrapper key={label} intensity={0.5}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-xl border border-slate-900/5 dark:border-white/5 bg-slate-900/5 dark:bg-white/5 text-slate-500 dark:text-slate-400 flex items-center justify-center transition-all hover:scale-110 active:scale-95 hover:text-blue-500 hover:border-blue-500/30 block"
+                  >
+                    <Icon className="w-5 h-5" />
+                  </a>
+                </MagneticWrapper>
               ))}
             </div>
           </div>
