@@ -90,11 +90,13 @@ export function Footer() {
         </div>
 
         <div className="pt-10 border-t border-slate-900/5 dark:border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-xs text-slate-500 dark:text-slate-400 font-bold tracking-wider uppercase">
-            © {new Date().getFullYear()} Ankur Kumar. All rights reserved.
+          <p className="text-xs text-slate-500 dark:text-slate-400">
+            © {new Date().getFullYear()} Ankur Kumar. Designed for impact.
           </p>
-          <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest">
-            Built with <Heart className="w-3 h-3 text-rose-500 fill-rose-500 animate-pulse" /> using Next.js
+
+          <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+            <span>Made with passion</span>
+            <Heart className="w-3 h-3 text-red-500 fill-red-500 animate-pulse" />
           </div>
         </div>
       </div>
