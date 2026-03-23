@@ -22,14 +22,26 @@ const shadowMap = [
   "group-hover:shadow-teal-500/20",
 ];
 
-function AnimatedCounter({ value, suffix = "" }: { value: string; suffix?: string }) {
+function AnimatedCounter({
+  value,
+  suffix = "",
+}: {
+  value: string | number;
+  suffix?: string;
+}) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true });
-  const numericValue = parseInt(value.replace(/[^0-9]/g, "")) || 0;
+
+  // ✅ SAFE parsing
+  const numericValue =
+    typeof value === "number"
+      ? value
+      : parseInt(String(value).replace(/[^0-9]/g, ""), 10) || 0;
 
   useEffect(() => {
     if (!isInView) return;
+
     const duration = 2000;
     const steps = 60;
     const increment = numericValue / steps;
@@ -107,15 +119,18 @@ export function Achievements() {
               <div key={i} className="flex flex-col gap-2">
                 <div className="flex items-center gap-2">
                   <span className={`text-3xl font-black bg-clip-text text-transparent bg-gradient-to-br ${colorMap[i % colorMap.length]}`}>
-                    {ach.metric.includes("+") ? (
-                      <AnimatedCounter value={ach.metric} suffix="+" />
-                    ) : (
-                      ach.metric
-                    )}
+                    {/\d/.test(ach.metric) ? (
+                    <AnimatedCounter
+                      value={ach.metric}
+                      suffix={ach.metric.includes("+") ? "+" : ""}
+                    />
+                  ) : (
+                    ach.metric
+                  )}
                   </span>
                 </div>
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-tight font-medium">
-                  {ach.text.split(",")[0]}
+                  {ach.text}
                 </p>
               </div>
             ))}
