@@ -131,7 +131,7 @@ export function Hero() {
             >
               <div className="relative w-full h-full rounded-[2rem] overflow-hidden bg-slate-900 border border-black/10 dark:border-white/5">
                 <Image
-                  src="/images/img1.png"
+                  src="/images/fin.png"
                   alt="Ankur"
                   width={500}
                   height={500}
