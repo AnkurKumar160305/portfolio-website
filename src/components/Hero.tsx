@@ -131,10 +131,10 @@ export function Hero() {
             >
               <div className="relative w-full h-full rounded-[2rem] overflow-hidden bg-slate-900 border border-black/10 dark:border-white/5">
                 <Image
-                  src="/images/ankur1.png"
+                  src="/images/img1.png"
                   alt="Ankur"
-                  width={300}
-                  height={400}
+                  width={500}
+                  height={500}
                   className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
                   priority
                 />
